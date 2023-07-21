@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:minimal/components/color.dart';
@@ -16,12 +18,13 @@ class ImageWrapper extends StatelessWidget {
   Widget build(BuildContext context) {
     //TODO Listen to inherited widget width updates.
     double width = MediaQuery.of(context).size.width;
+    double height = MediaQuery.of(context).size.height;
     return Container(
       margin: const EdgeInsets.symmetric(vertical: 24),
       child: Image.asset(
         image,
         width: width,
-        height: width / 1.618,
+        height: min(width / 1.618, height / 2),
         fit: BoxFit.cover,
       ),
     );
@@ -264,20 +267,24 @@ class Footer extends StatelessWidget {
       padding: const EdgeInsets.symmetric(vertical: 40),
       child: const Align(
         alignment: Alignment.centerRight,
-        child: TextBody(text: "Copyright © 2023"),
+        child: TextBody(text: "I love your mum"),
       ),
     );
   }
 }
 
 class ListItem extends StatelessWidget {
-  // TODO replace with Post item model.
   final String title;
   final String? imageUrl;
   final String? description;
+  final String url;
 
   const ListItem(
-      {Key? key, required this.title, this.imageUrl, this.description})
+      {Key? key,
+      required this.title,
+      this.imageUrl,
+      this.description,
+      required this.url})
       : super(key: key);
 
   @override
@@ -314,7 +321,7 @@ class ListItem extends StatelessWidget {
           child: Container(
             margin: marginBottom24,
             child: ReadMoreButton(
-              onPressed: () => Navigator.pushNamed(context, PostPage.name),
+              onPressed: () => Navigator.pushNamed(context, url),
             ),
           ),
         ),
@@ -349,7 +356,7 @@ class MinimalMenuBar extends StatelessWidget {
                 splashColor: Colors.transparent,
                 onTap: () => Navigator.popUntil(
                     context, ModalRoute.withName(Navigator.defaultRouteName)),
-                child: Text("MINIMAL",
+                child: Text("MATRIX",
                     style: GoogleFonts.montserrat(
                         color: textPrimary,
                         fontSize: 30,
@@ -370,32 +377,11 @@ class MinimalMenuBar extends StatelessWidget {
                         ),
                       ),
                       TextButton(
-                        onPressed: () {},
-                        style: menuButtonStyle,
-                        child: const Text(
-                          "PORTFOLIO",
-                        ),
-                      ),
-                      TextButton(
                         onPressed: () =>
                             Navigator.pushNamed(context, TypographyPage.name),
                         style: menuButtonStyle,
                         child: const Text(
-                          "STYLE",
-                        ),
-                      ),
-                      TextButton(
-                        onPressed: () {},
-                        style: menuButtonStyle,
-                        child: const Text(
                           "ABOUT",
-                        ),
-                      ),
-                      TextButton(
-                        onPressed: () {},
-                        style: menuButtonStyle,
-                        child: const Text(
-                          "CONTACT",
                         ),
                       ),
                     ],

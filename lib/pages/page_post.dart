@@ -23,7 +23,7 @@ class PostPage extends StatelessWidget {
                 child: Container(
                   margin: marginBottom12,
                   child: Text(
-                    "A BETTER BLOG FOR WRITING",
+                    "A BETTER BLOG FOR WRITING 中文测试",
                     style: headlineTextStyle,
                   ),
                 ),
@@ -46,8 +46,8 @@ class PostPage extends StatelessWidget {
               ),
               const Align(
                 alignment: Alignment.centerLeft,
-                child:
-                    TextHeadlineSecondary(text: "Secondary Headline Example"),
+                child: TextHeadlineSecondary(
+                    text: "Secondary Headline Example 中文测试"),
               ),
               const Align(
                 alignment: Alignment.centerLeft,
@@ -62,7 +62,7 @@ class PostPage extends StatelessWidget {
                 alignment: Alignment.centerLeft,
                 child: TextBody(
                     text:
-                        "Sed elementum tempus egestas sed sed risus. Mauris in aliquam sem fringilla ut morbi tincidunt. Placerat vestibulum lectus mauris ultrices eros. Et leo duis ut diam. Auctor neque vitae tempus quam. Nec nam aliquam sem et tortor consequat. Suspendisse interdum consectetur libero id faucibus nisl. Ornare suspendisse sed nisi lacus sed viverra. Tellus pellentesque eu tincidunt tortor aliquam nulla facilisi cras fermentum. Egestas purus viverra accumsan in nisl nisi."),
+                        "中文测试中文测试中文测试中文测试中文测试中文测试中文测试中文测试中文测试中文测试中文测试中文测试中文测试中文测试中文测试中文测试中文测试中文测试中文测试中文测试中文测试中文测试中文测试中文测试中文测试中文测试中文测试中文测试中文测试中文测试中文测试中文测试中文测试中文测试中文测试中文测试中文测试中文测试中文测试中文测试中文测试中文测试中文测试中文测试中文测试中文测试中文测试中文测试中文测试中文测试中文测试中文测试中文测试中文测试中文测试中文测试中文测试中文测试中文测试中文测试中文测试中文测试中文测试中文测试中文测试中文测试中文测试中文测试中文测试中文测试中文测试中文测试中文测试中文测试中文测试中文测试中文测试中文测试中文测试中文测试中文测试中文测试中文测试中文测试中文测试中文测试中文测试"),
               ),
               const Align(
                 alignment: Alignment.centerLeft,

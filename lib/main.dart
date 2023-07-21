@@ -1,11 +1,78 @@
 import 'package:flutter/material.dart';
 import 'package:minimal/pages/pages.dart';
+import 'package:minimal/posts/blog.dart';
 import 'package:minimal/routes.dart';
-import 'package:navigation_utils/navigation_utils.dart';
+import 'package:provider/provider.dart';
 import 'package:responsive_framework/responsive_framework.dart';
+import 'package:minimal/model.dart';
+import 'package:http/http.dart' as http;
+import 'dart:async';
+import 'dart:convert';
 
 void main() {
-  runApp(const MyApp());
+  runApp(
+    ChangeNotifierProvider(
+      create: (_) => ArticleProvider(),
+      child: const MyApp(),
+    ),
+  );
+}
+
+class ArticleProvider extends ChangeNotifier {
+  List<Article> _articles = [];
+  bool _isLoading = true;
+
+  List<Article> get articles => _articles;
+  bool get isLoading => _isLoading;
+
+  ArticleProvider() {
+    fetchArticles(); // Call fetchArticles here
+  }
+
+  Future<void> fetchArticles() async {
+    try {
+      final response =
+          await http.get(Uri.parse('http://10.249.45.98:114/articles'));
+      if (response.statusCode == 200) {
+        final List<dynamic> data = json.decode(response.body);
+        _articles = data.map((entry) => Article.fromJson(entry)).toList();
+      }
+    } finally {
+      _isLoading = false;
+      notifyListeners();
+    }
+  }
+}
+
+class ConditionalRouteWidget extends StatelessWidget {
+  final List<String>? routes;
+  final List<String>? routesExcluded;
+  final TransitionBuilder builder;
+  final Widget child;
+
+  const ConditionalRouteWidget(
+      {Key? key,
+      this.routes,
+      this.routesExcluded,
+      required this.builder,
+      required this.child})
+      : assert(routes == null || routesExcluded == null,
+            'Cannot include `routes` and `routesExcluded`. Please provide an list of routes to include or exclude, not both.'),
+        super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    String? currentRoute = ModalRoute.of(context)?.settings.name;
+
+    if (routes != null && routes!.contains(currentRoute)) {
+      return builder(context, child);
+    } else if (routesExcluded != null &&
+        routesExcluded!.contains(currentRoute) == false) {
+      return builder(context, child);
+    }
+
+    return child;
+  }
 }
 
 class MyApp extends StatelessWidget {
@@ -14,6 +81,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      title: "Matrix",
       // Wrapping the app with a builder method makes breakpoints
       // accessible throughout the widget tree.
       builder: (context, child) => ResponsiveBreakpoints.builder(
@@ -82,7 +150,7 @@ class MyApp extends StatelessWidget {
       case TypographyPage.name:
         return const TypographyPage();
       default:
-        return const SizedBox.shrink();
+        return PostBlog(url: name);
     }
   }
 }

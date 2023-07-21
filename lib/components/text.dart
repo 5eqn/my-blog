@@ -1,8 +1,44 @@
 import 'package:flutter/material.dart';
 import 'package:minimal/components/spacing.dart';
 import 'package:minimal/components/typography.dart';
+import 'package:flutter_highlighter/flutter_highlighter.dart';
+import 'package:flutter_highlighter/themes/github.dart';
 
 import 'color.dart';
+
+class CodeBody extends StatelessWidget {
+  final String code;
+  final String lang;
+
+  const CodeBody({Key? key, required this.code, required this.lang})
+      : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+        margin: marginBottom24,
+        child: SingleChildScrollView(
+            scrollDirection: Axis.horizontal,
+            child: HighlightView(
+              // The original code to be highlighted
+              code,
+
+              // Specify language
+              // It is recommended to give it a value for performance
+              language: lang,
+
+              // Specify highlight theme
+              // All available themes are listed in `themes` folder
+              theme: githubTheme,
+
+              // Specify padding
+              padding: const EdgeInsets.all(12),
+
+              // Specify text style
+              textStyle: codeTextStyle,
+            )));
+  }
+}
 
 class TextBody extends StatelessWidget {
   final String text;
@@ -29,7 +65,7 @@ class TextBodySecondary extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: marginBottom24,
+      margin: marginBottom40,
       child: Text(
         text,
         style: subtitleTextStyle,
@@ -46,7 +82,7 @@ class TextHeadlineSecondary extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: marginBottom12,
+      margin: marginBottom24,
       child: Text(
         text,
         style: headlineSecondaryTextStyle,

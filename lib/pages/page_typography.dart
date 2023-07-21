@@ -21,34 +21,14 @@ class TypographyPage extends StatelessWidget {
                     alignment: Alignment.center,
                     child: Container(
                       margin: marginBottom12,
-                      child: Text("Typography", style: headlineTextStyle),
+                      child: Text("你好", style: headlineTextStyle),
                     ),
                   ),
                   Align(
                     alignment: Alignment.center,
                     child: Container(
                       margin: marginBottom24,
-                      child: Text("Text styles for pages and posts.",
-                          style: subtitleTextStyle),
-                    ),
-                  ),
-                  divider,
-                  Container(
-                    margin: marginBottom40,
-                  ),
-                  Align(
-                    alignment: Alignment.center,
-                    child: Container(
-                      margin: marginBottom12,
-                      child: Text("Basic Styles",
-                          style: headlineSecondaryTextStyle),
-                    ),
-                  ),
-                  Align(
-                    alignment: Alignment.center,
-                    child: Container(
-                      margin: marginBottom24,
-                      child: Text("Simple to remember and use",
+                      child: Text("欢迎阅读 5eqn 的 Matrix 主题博客",
                           style: subtitleTextStyle),
                     ),
                   ),
@@ -60,22 +40,7 @@ class TypographyPage extends StatelessWidget {
                     alignment: Alignment.centerLeft,
                     child: Container(
                       margin: marginBottom24,
-                      child: Text("Headline", style: headlineTextStyle),
-                    ),
-                  ),
-                  Align(
-                    alignment: Alignment.centerLeft,
-                    child: Container(
-                      margin: marginBottom24,
-                      child: Text("Headline Secondary",
-                          style: headlineSecondaryTextStyle),
-                    ),
-                  ),
-                  Align(
-                    alignment: Alignment.centerLeft,
-                    child: Container(
-                      margin: marginBottom24,
-                      child: Text("Subtitle", style: subtitleTextStyle),
+                      child: Text("免责声明", style: headlineSecondaryTextStyle),
                     ),
                   ),
                   Align(
@@ -83,8 +48,22 @@ class TypographyPage extends StatelessWidget {
                     child: Container(
                       margin: marginBottom40,
                       child: Text(
-                          "Body text is the default text style. Use this text style for website content and paragraphs. This text is chosen to be easy and comfortable to read. As the default text style for large blocks of text, particular attention is placed on the choice of font. Some fonts are more comfortable to read than others.",
+                          "此系列博客可能含有一些事实性错误或个人偏见，主要用于对一些神秘学想法进行原始记录，且包含一些虚构创作和 AI 创作的成分。若您依据本博客做出的行动对您造成了后果，笔者不进行承担，请您知悉。",
                           style: bodyTextStyle),
+                    ),
+                  ),
+                  Align(
+                    alignment: Alignment.centerLeft,
+                    child: Container(
+                      margin: marginBottom24,
+                      child: Text("联系方式", style: headlineSecondaryTextStyle),
+                    ),
+                  ),
+                  Align(
+                    alignment: Alignment.centerLeft,
+                    child: Container(
+                      margin: marginBottom40,
+                      child: Text("QQ / 491100866", style: bodyTextStyle),
                     ),
                   ),
                   divider,
